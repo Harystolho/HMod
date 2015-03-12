@@ -1,0 +1,9 @@
+item.wrench_hary.name=Block Placer
+item.remov_hary.name=Block Remover
+item.ingot_hary.name=Hary Ingot
+item.coord_hary.name=Coord Hary
+
+tile.hary_block.name=HaryPurple
+tile.hary_ore.name=HaryOre
+
+itemGroup.HarysTab=Harystolho Tab
