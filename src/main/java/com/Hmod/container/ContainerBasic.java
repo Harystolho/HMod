@@ -66,7 +66,7 @@ public class ContainerBasic extends Container {
 					+ TE_INVENTORY_SLOT_COUNT + ") and TileInventory ("
 					+ tileEntityInventoryBasic.getSizeInventory() + ")");
 		}
-		final int TILE_INVENTORY_XPOS = 8;
+		final int TILE_INVENTORY_XPOS = 50;
 		final int TILE_INVENTORY_YPOS = 20;
 		// Add the tile inventory container to the gui
 		for (int x = 0; x < TE_INVENTORY_SLOT_COUNT; x++) {

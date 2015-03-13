@@ -14,7 +14,7 @@ import net.minecraft.util.IChatComponent;
 
 public class TileEntityInventoryBasic extends TileEntity implements IInventory {
 	// Create and initialize the items variable that will store store the items
-	final int NUMBER_OF_SLOTS = 18;
+	final int NUMBER_OF_SLOTS = 9;
 	private ItemStack[] itemStacks = new ItemStack[NUMBER_OF_SLOTS];
 
 	/* The following are some IInventory methods you are required to override */

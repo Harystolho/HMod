@@ -26,7 +26,7 @@ public class GuiInventoryBasic extends GuiContainer {
 		// Set the width and height of the gui. Should match the size of the
 		// texture!
 		xSize = 176;
-		ySize = 133;
+		ySize = 142;
 	}
 
 	// draw the background for the GUI - rendered first
