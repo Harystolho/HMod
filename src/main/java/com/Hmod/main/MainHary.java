@@ -2,23 +2,28 @@ package com.Hmod.main;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import com.Hmod.HaryBlocks.HarysBlocks;
 import com.Hmod.HaryGen.HarysGen;
 import com.Hmod.HaryItems.HarysItems;
 import com.Hmod.HaryRecipes.HarysRecipes;
 import com.Hmod.creativetabs.HarysTab;
+import com.Hmod.gui.GuiBarrelHandler;
+import com.Hmod.gui.GuiHandlerRegistry9x1;
 import com.Hmod.helper.Reference;
 import com.Hmod.proxy.CommonProxy;
+import com.Hmod.tile_entity.HaryEntity;
 
 @Mod(modid = Reference.MODID, name = Reference.MOD_NAME, version = Reference.VERSION)
 public class MainHary {
 
-	 @Mod.Instance(Reference.MODID)
+	 @Instance	
 	 public static MainHary instance;
 	
 	
@@ -46,6 +51,10 @@ public class MainHary {
 	public void init(FMLInitializationEvent event) {
 
 		proxy.registerRenders();
+		HaryEntity.register();
+		HaryEntity.ClientRegister();
+		
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiBarrelHandler());
 
 	//	MinecraftForge.EVENT_BUS.register(new com.Hmod.handler.EventHandler());
 	}

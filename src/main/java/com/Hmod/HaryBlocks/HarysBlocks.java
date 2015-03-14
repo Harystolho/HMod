@@ -8,12 +8,12 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import com.Hmod.gui.GuiHandlerH;
-import com.Hmod.gui.GuiHandlerRegistry;
+import com.Hmod.gui.GuiHandlerH9x1;
+import com.Hmod.gui.GuiHandlerRegistry9x1;
 import com.Hmod.helper.Reference;
 import com.Hmod.main.MainHary;
-import com.Hmod.tileentity.HaryTileEntityChest;
-import com.Hmod.tileentity.TileEntityInventoryBasic;
+import com.Hmod.tile_entity.HaryTileEntityChest;
+import com.Hmod.tile_entity.TileEntityInventory9x1;
 
 public class HarysBlocks {
 
@@ -21,6 +21,7 @@ public class HarysBlocks {
 	public static Block hary_ore;
 	public static Block hary_gui;
 	public static Block hary_chest;
+	public static Block hary_barrel;
 	
 	public static void init() {
 
@@ -30,7 +31,7 @@ public class HarysBlocks {
 		hary_gui = new hary_gui().setUnlocalizedName("hary_gui").setCreativeTab(MainHary.HaryT);
 		hary_chest = new hary_chest(0).setUnlocalizedName("hary_chest").setCreativeTab(MainHary.HaryT);
 		
-		
+		hary_barrel = new BlockBarrel();
 	}
 
 	public static void register() {
@@ -43,16 +44,19 @@ public class HarysBlocks {
 		GameRegistry.registerBlock(hary_gui, hary_gui.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(hary_chest, hary_chest.getUnlocalizedName().substring(5));
 		
+		GameRegistry.registerBlock(hary_barrel, hary_barrel.getUnlocalizedName().substring(5));
 		
 		
-		 NetworkRegistry.INSTANCE.registerGuiHandler(MainHary.instance, GuiHandlerRegistry.getInstance());
-		 GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandlerH(), GuiHandlerH.getGuiID());
+		 GuiHandlerRegistry9x1.getInstance().registerGuiHandler(new GuiHandlerH9x1(), GuiHandlerH9x1.getGuiID());
+		 
 	}
 
 	public static void registerRenders(){
 		
 		registerRender(hary_block);
 		registerRender(hary_ore);
+		registerRender(hary_chest);
+		registerRender(hary_barrel);
 	}
 	public static void registerRender(Block block){
 	

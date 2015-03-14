@@ -1,6 +1,6 @@
 package com.Hmod.HaryBlocks;
 
-import com.Hmod.tileentity.HaryTileEntityChest;
+import com.Hmod.tile_entity.HaryTileEntityChest;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;

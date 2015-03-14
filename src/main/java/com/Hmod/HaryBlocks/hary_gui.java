@@ -14,9 +14,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.Hmod.gui.GuiHandlerH;
+import com.Hmod.gui.GuiHandlerH9x1;
 import com.Hmod.main.MainHary;
-import com.Hmod.tileentity.TileEntityInventoryBasic;
+import com.Hmod.tile_entity.TileEntityInventory9x1;
 
 public class hary_gui extends BlockContainer {
 
@@ -28,7 +28,7 @@ public class hary_gui extends BlockContainer {
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 
-		return new TileEntityInventoryBasic();
+		return new TileEntityInventory9x1();
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class hary_gui extends BlockContainer {
 		if (worldIn.isRemote)
 			return true;
 		playerIn.openGui(MainHary.instance,
-				GuiHandlerH.getGuiID(), worldIn, pos.getX(), pos.getY(),
+				GuiHandlerH9x1.getGuiID(), worldIn, pos.getX(), pos.getY(),
 				pos.getZ());
 		return true;
 	}
