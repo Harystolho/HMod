@@ -14,16 +14,16 @@ import com.Hmod.HaryGen.HarysGen;
 import com.Hmod.HaryItems.HarysItems;
 import com.Hmod.HaryRecipes.HarysRecipes;
 import com.Hmod.creativetabs.HarysTab;
-import com.Hmod.gui.GuiBarrelHandler;
-import com.Hmod.gui.GuiHandlerRegistry9x1;
+import com.Hmod.gui.GuiHandler;
 import com.Hmod.helper.Reference;
+import com.Hmod.nothing.GuiHandlerRegistry9x1;
 import com.Hmod.proxy.CommonProxy;
 import com.Hmod.tile_entity.HaryEntity;
 
 @Mod(modid = Reference.MODID, name = Reference.MOD_NAME, version = Reference.VERSION)
 public class MainHary {
 
-	 @Instance	
+	 @Instance(Reference.MODID)	
 	 public static MainHary instance;
 	
 	
@@ -52,11 +52,9 @@ public class MainHary {
 
 		proxy.registerRenders();
 		HaryEntity.register();
-		HaryEntity.ClientRegister();
 		
-		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiBarrelHandler());
+		proxy.registerNetworkStaff();
 
-	//	MinecraftForge.EVENT_BUS.register(new com.Hmod.handler.EventHandler());
 	}
 
 	@EventHandler

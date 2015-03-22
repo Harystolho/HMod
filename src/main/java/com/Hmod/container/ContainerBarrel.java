@@ -70,5 +70,5 @@ public class ContainerBarrel extends Container {
 
 		return itemstack;
 	}
-
+	
 }

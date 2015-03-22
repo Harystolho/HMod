@@ -2,6 +2,8 @@ package com.Hmod.HaryItems;
 
 import java.util.List;
 
+import com.Hmod.HaryBlocks.HarysBlocks;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,9 +16,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class coord_hary extends Item {
+public class Coord_hary extends Item {
 
-	public coord_hary() {
+	public Coord_hary() {
 		setUnlocalizedName("coord_hary");
 	}
 

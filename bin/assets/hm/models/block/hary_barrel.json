@@ -1,6 +1,12 @@
 {
-    "parent": "block/cube_all",
+    "parent": "block/cube",
     "textures": {
-        "all": "hm:blocks/hary_barrel"
+        "up": "hm:blocks/hary_barrel_top",
+        "down": "hm:blocks/hary_barrel_bottom",
+        "north": "hm:blocks/hary_barrel_side",
+        "south": "hm:blocks/hary_barrel_side",
+        "east": "hm:blocks/hary_barrel_side",
+        "west": "hm:blocks/hary_barrel_side"
+
     }
 }

@@ -12,9 +12,9 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
-public class wrench_hary extends Item {
+public class Wrench_hary extends Item {
 
-	public wrench_hary() {
+	public Wrench_hary() {
 
 		setUnlocalizedName("wrench_hary");
 

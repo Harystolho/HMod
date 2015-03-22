@@ -14,7 +14,7 @@ public class HarysRecipes {
 
 	public static void addRecipes() {
 		GameRegistry.addRecipe(new ItemStack(HarysBlocks.hary_block, 32),
-				"AAA", "A A", "AAA", 'A', Blocks.obsidian);
+				"AAA", "A A", "AAA", 'A', HarysItems.ingot_hary);
 
 		GameRegistry.addRecipe(new ItemStack(HarysItems.wrench_hary), " BB",
 				" AB", "A  ", 'A', Items.stick, 'B', Blocks.obsidian);
@@ -22,12 +22,15 @@ public class HarysRecipes {
 		GameRegistry.addRecipe(new ItemStack(HarysItems.remov_hary), " CB",
 				" AC", "A  ", 'A', Items.stick, 'B', Blocks.obsidian, 'C',
 				Items.diamond);
-
-	
 		
+		GameRegistry.addRecipe(new ItemStack(HarysItems.hary_pick), "ZZZ",
+				" X ", " X ", 'X', HarysItems.ingot_hary, 'Z', HarysItems.ingot_compress_hary);
+
+		GameRegistry.addRecipe(new ItemStack(HarysItems.ingot_compress_hary),
+				"AAA", "ADA", "AAA", 'A', HarysItems.ingot_hary, 'D', Items.diamond);
 	//Furnace
 		
-		GameRegistry.addSmelting(HarysBlocks.hary_ore, new ItemStack(HarysItems.ingot_hary, 2), 5F);
+		GameRegistry.addSmelting(HarysBlocks.hary_ore, new ItemStack(HarysItems.ingot_hary, 1), 5F);
 		
 		
 	}

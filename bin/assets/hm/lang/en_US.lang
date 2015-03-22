@@ -2,9 +2,10 @@ item.wrench_hary.name=Block Placer
 item.remov_hary.name=Block Remover
 item.ingot_hary.name=Hary Ingot
 item.coord_hary.name=Coord Hary
+item.hary_pick.name=Hary Pickaxe
 
-tile.hary_block.name=HaryPurple
-tile.hary_ore.name=HaryOre
-tile.hary_chest.name=Hary Chest
+tile.hary_block.name=Hary Purple
+tile.hary_ore.name=Hary Ore
+tile.hary_barrel.name=Hary Barrel
 
 itemGroup.HarysTab=Harystolho Tab
