@@ -1,5 +1,8 @@
     {
     "variants": {
-         "normal": {"model": "hm:hary_furnace"}
+        "facing=north": { "model": "hm:hary_furnace" },
+        "facing=south": { "model": "hm:hary_furnace", "y": 180 },
+        "facing=west":  { "model": "hm:hary_furnace", "y": 270 },
+        "facing=east":  { "model": "hm:hary_furnace", "y": 90 }
         } 
  }          

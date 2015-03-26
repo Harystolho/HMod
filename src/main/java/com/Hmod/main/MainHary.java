@@ -1,5 +1,6 @@
 package com.Hmod.main;
 
+import net.minecraft.util.MathHelper;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -43,8 +44,6 @@ public class MainHary {
 		HarysItems.register();
 
 		HarysGen.MainRegistry();
-		
-		
 	}
 
 	@EventHandler

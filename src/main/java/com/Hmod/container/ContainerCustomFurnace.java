@@ -8,8 +8,10 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import com.Hmod.tile_entity.TileEntityFurnaceH;
 
 public class ContainerCustomFurnace extends Container {
@@ -39,8 +41,9 @@ public class ContainerCustomFurnace extends Container {
 	public final int FUEL_SLOTS_COUNT = 1;
 	public final int INPUT_SLOTS_COUNT = 1;
 	public final int OUTPUT_SLOTS_COUNT = 1;
+	public final int UPGRADE_SLOTS_COUNT = 1;
 	public final int FURNACE_SLOTS_COUNT = FUEL_SLOTS_COUNT + INPUT_SLOTS_COUNT
-			+ OUTPUT_SLOTS_COUNT;
+			+ OUTPUT_SLOTS_COUNT + UPGRADE_SLOTS_COUNT;
 
 	private final int VANILLA_FIRST_SLOT_INDEX = 0;
 	private final int FIRST_FUEL_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX
@@ -49,12 +52,14 @@ public class ContainerCustomFurnace extends Container {
 			+ FUEL_SLOTS_COUNT;
 	private final int FIRST_OUTPUT_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX
 			+ INPUT_SLOTS_COUNT;
+	private final int FIRST_UPGRADE_SLOT_INDEX = FIRST_OUTPUT_SLOT_INDEX + OUTPUT_SLOTS_COUNT;
 
 	private final int FIRST_FUEL_SLOT_NUMBER = 0;
 	private final int FIRST_INPUT_SLOT_NUMBER = FIRST_FUEL_SLOT_NUMBER
 			+ FUEL_SLOTS_COUNT;
 	private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER
 			+ INPUT_SLOTS_COUNT;
+	private final int FIRST_UPGRADE_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
 
 	public ContainerCustomFurnace(IInventory playerInv, TileEntityFurnaceH furnace) {
 		this.tileFurnace = furnace;
@@ -86,6 +91,9 @@ public class ContainerCustomFurnace extends Container {
 				FIRST_INPUT_SLOT_NUMBER, 22, 60));
 		this.addSlotToContainer(new SlotOutput(tileFurnace,
 				FIRST_OUTPUT_SLOT_NUMBER, 137, 60));
+		this.addSlotToContainer(new SlotUpgrade(tileFurnace,
+				FIRST_UPGRADE_SLOT_NUMBER, 62, 26));
+
 
 	}
 
@@ -122,7 +130,11 @@ public class ContainerCustomFurnace extends Container {
 					// bottom slot first
 					return null;
 				}
-			} else {
+			} else if(TileEntityFurnaceH.getUpgradeItems(sourceStack) > 0){
+				if(!mergeItemStack(sourceStack, FIRST_UPGRADE_SLOT_INDEX, FIRST_UPGRADE_SLOT_INDEX + UPGRADE_SLOTS_COUNT, true)){
+					return null;
+				}
+			} else{
 				return null;
 			}
 		} else if (sourceSlotIndex >= FIRST_FUEL_SLOT_INDEX
@@ -235,6 +247,20 @@ public class ContainerCustomFurnace extends Container {
 		@Override
 		public boolean isItemValid(ItemStack stack) {
 			return TileEntityFurnaceH.isItemValidForOutputSlot(stack);
+		}
+	}
+	
+	public class SlotUpgrade extends Slot {
+		public SlotUpgrade(IInventory inventoryIn, int index, int xPosition,
+				int yPosition) {
+			super(inventoryIn, index, xPosition, yPosition);
+		}
+
+		// if this function returns false, the player won't be able to insert
+		// the given item into this slot
+		@Override
+		public boolean isItemValid(ItemStack stack) {
+			return TileEntityFurnaceH.isItemValidForUpgradeSlot(stack);
 		}
 	}
 

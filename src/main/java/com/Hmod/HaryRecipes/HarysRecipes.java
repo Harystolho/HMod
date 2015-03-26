@@ -28,10 +28,6 @@ public class HarysRecipes {
 
 		GameRegistry.addRecipe(new ItemStack(HarysItems.ingot_compress_hary),
 				"AAA", "ADA", "AAA", 'A', HarysItems.ingot_hary, 'D', Items.diamond);
-	//Furnace
-		
-		GameRegistry.addSmelting(HarysBlocks.hary_ore, new ItemStack(HarysItems.ingot_hary, 1), 5F);
-		
 		
 	}
 

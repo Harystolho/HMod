@@ -2,6 +2,9 @@ package com.Hmod.tile_entity;
 
 import java.util.Arrays;
 
+import com.Hmod.HaryItems.HarysItems;
+import com.Hmod.HaryRecipes.HaryFurnaceRecipes;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -27,14 +30,16 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 	public static final int FUEL_SLOTS_COUNT = 1;
 	public static final int INPUT_SLOTS_COUNT = 1;
 	public static final int OUTPUT_SLOTS_COUNT = 1;
+	public static final int UPGRADE_SLOTS_COUNT = 1;
 	public static final int TOTAL_SLOTS_COUNT = FUEL_SLOTS_COUNT
-			+ INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT;
+			+ INPUT_SLOTS_COUNT + OUTPUT_SLOTS_COUNT + UPGRADE_SLOTS_COUNT;
 
 	public static final int FIRST_FUEL_SLOT = 0;
 	public static final int FIRST_INPUT_SLOT = FIRST_FUEL_SLOT
 			+ FUEL_SLOTS_COUNT;
 	public static final int FIRST_OUTPUT_SLOT = FIRST_INPUT_SLOT
 			+ INPUT_SLOTS_COUNT;
+	public static final int FIRST_UPGRAE_SLOT = FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT;
 
 	private ItemStack[] itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
 
@@ -49,7 +54,7 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 	/** The number of ticks the current item has been cooking */
 	private short cookTime;
 	/** The number of ticks required to cook an item */
-	private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value
+	private static short COOK_TIME_FOR_COMPLETION = 100; // vanilla value
 																// is 200 = 10
 																// seconds
 	private int cachedNumberOfBurningSlots = -1;
@@ -237,7 +242,7 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 	}
 
 	public static ItemStack getSmeltingResultForItem(ItemStack stack) {
-		return FurnaceRecipes.instance().getSmeltingResult(stack);
+		return HaryFurnaceRecipes.instance().getSmeltingResult(stack);
 	}
 
 	// returns the number of ticks the given item will burn. Returns 0 if the
@@ -249,6 +254,16 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 		return (short) MathHelper.clamp_int(burntime, 0, Short.MAX_VALUE);
 	}
 
+	public static int getUpgradeItems(ItemStack sourceStack) {
+		if(sourceStack.getItem() == HarysItems.ingot_hary){
+			COOK_TIME_FOR_COMPLETION = 50; return 1;
+		} else if(sourceStack.getItem() == HarysItems.ingot_compress_hary){
+			COOK_TIME_FOR_COMPLETION = 50; return 1;
+		}
+				
+		return 0;
+	}
+	
 	// Gets the number of slots in the inventory
 	@Override
 	public int getSizeInventory() {
@@ -334,6 +349,13 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 		return false;
 	}
 
+	static public boolean isItemValidForUpgradeSlot(ItemStack itemStack) {
+		if(itemStack.getItem() == HarysItems.ingot_hary) return true;
+		if(itemStack.getItem() == HarysItems.ingot_compress_hary) return true;
+		
+		return false;
+	}
+	
 	// This is where you save any data that you don't want to lose when the tile
 	// entity unloads
 	// In this case, it saves the state of the furnace (burn time etc) and the
@@ -523,5 +545,7 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 	@Override
 	public void closeInventory(EntityPlayer player) {
 	}
+
+
 
 }

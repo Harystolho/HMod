@@ -1,13 +1,16 @@
 package com.Hmod.HaryBlocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
@@ -28,11 +31,12 @@ import com.Hmod.tile_entity.TileEntityFurnaceH;
 
 public class HaryFurnace extends BlockContainer {
 
-	private static final IProperty FACING = null;
-
 	public HaryFurnace() {
 		super(Material.rock);
 		this.setCreativeTab(MainHary.HaryT);
+
+		this.setDefaultState(this.blockState.getBaseState().withProperty(
+				FACING, EnumFacing.NORTH));
 	}
 
 	@Override
@@ -58,8 +62,6 @@ public class HaryFurnace extends BlockContainer {
 		return true;
 	}
 
-	
-	
 	// This is where you can do something when the block is broken. In this case
 	// drop the inventory's contents
 	@Override
@@ -102,61 +104,176 @@ public class HaryFurnace extends BlockContainer {
 		super.breakBlock(worldIn, pos, state);
 	}
 
-/*	// The code below isn't necessary for illustrating the Inventory Furnace
-	// concepts, it's just used for rendering.
-	// For more background information see MBE03
-	// we will give our Block a property which tracks the number of burning
-	// sides, 0 - 4.
-	// This will affect the appearance of the block model, but does not need to
-	// be stored in metadata (it's stored in
-	// the tileEntity) so we only need to implement getActualState.
-	// getStateFromMeta, getMetaFromState aren't required
-	// but we give defaults anyway because the base class getMetaFromState gives
-	// an error if we don't
-	// update the block state depending on the number of slots which contain
-	// burning fuel
-	@Override
-	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn,
-			BlockPos pos) {
-		TileEntity tileEntity = worldIn.getTileEntity(pos);
-		if (tileEntity instanceof TileEntityFurnaceH) {
-			TileEntityFurnaceH tileInventoryFurnace = (TileEntityFurnaceH) tileEntity;
-			int burningSlots = tileInventoryFurnace.numberOfBurningFuelSlots();
-			burningSlots = MathHelper.clamp_int(burningSlots, 0, 4);
-			return getDefaultState().withProperty(BURNING_SIDES_COUNT,
-					burningSlots);
+	/*
+	 * // The code below isn't necessary for illustrating the Inventory Furnace
+	 * // concepts, it's just used for rendering. // For more background
+	 * information see MBE03 // we will give our Block a property which tracks
+	 * the number of burning // sides, 0 - 4. // This will affect the appearance
+	 * of the block model, but does not need to // be stored in metadata (it's
+	 * stored in // the tileEntity) so we only need to implement getActualState.
+	 * // getStateFromMeta, getMetaFromState aren't required // but we give
+	 * defaults anyway because the base class getMetaFromState gives // an error
+	 * if we don't // update the block state depending on the number of slots
+	 * which contain // burning fuel
+	 * 
+	 * @Override public IBlockState getActualState(IBlockState state,
+	 * IBlockAccess worldIn, BlockPos pos) { TileEntity tileEntity =
+	 * worldIn.getTileEntity(pos); if (tileEntity instanceof TileEntityFurnaceH)
+	 * { TileEntityFurnaceH tileInventoryFurnace = (TileEntityFurnaceH)
+	 * tileEntity; int burningSlots =
+	 * tileInventoryFurnace.numberOfBurningFuelSlots(); burningSlots =
+	 * MathHelper.clamp_int(burningSlots, 0, 4); return
+	 * getDefaultState().withProperty(BURNING_SIDES_COUNT, burningSlots); }
+	 * return state; }
+	 * 
+	 * @Override public IBlockState getStateFromMeta(int meta) { return
+	 * this.getDefaultState(); // return
+	 * this.getDefaultState().withProperty(BURNING_SIDES_COUNT, //
+	 * Integer.valueOf(meta)); }
+	 * 
+	 * @Override public int getMetaFromState(IBlockState state) { return 0; //
+	 * return ((Integer)state.getValue(BURNING_SIDES_COUNT)).intValue(); }
+	 * 
+	 * // necessary to define which properties your blocks use // will also
+	 * affect the variants listed in the blockstates model file. See // MBE03
+	 * for more info.
+	 * 
+	 * @Override protected BlockState createBlockState() { return new
+	 * BlockState(this, new IProperty[] { BURNING_SIDES_COUNT }); }
+	 * 
+	 * 
+	 * public static final PropertyInteger BURNING_SIDES_COUNT = PropertyInteger
+	 * .create("burning_sides_count", 0, 4); // change the furnace emitted light
+	 * ("block light") depending on how many // slots are burning
+	 */
+
+	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
+		this.setDefaultFacing(worldIn, pos, state);
+	}
+
+	public static final PropertyDirection FACING = PropertyDirection.create(
+			"facing", EnumFacing.Plane.HORIZONTAL);
+
+	private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state) {
+		if (!worldIn.isRemote) {
+			Block block = worldIn.getBlockState(pos.north()).getBlock();
+			Block block1 = worldIn.getBlockState(pos.south()).getBlock();
+			Block block2 = worldIn.getBlockState(pos.west()).getBlock();
+			Block block3 = worldIn.getBlockState(pos.east()).getBlock();
+			EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+
+			if (enumfacing == EnumFacing.NORTH && block.isFullBlock()
+					&& !block1.isFullBlock()) {
+				enumfacing = EnumFacing.SOUTH;
+			} else if (enumfacing == EnumFacing.SOUTH && block1.isFullBlock()
+					&& !block.isFullBlock()) {
+				enumfacing = EnumFacing.NORTH;
+			} else if (enumfacing == EnumFacing.WEST && block2.isFullBlock()
+					&& !block3.isFullBlock()) {
+				enumfacing = EnumFacing.EAST;
+			} else if (enumfacing == EnumFacing.EAST && block3.isFullBlock()
+					&& !block2.isFullBlock()) {
+				enumfacing = EnumFacing.WEST;
+			}
+
+			worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing),
+					2);
 		}
-		return state;
 	}
 
-	@Override
+	public static void setState(boolean active, World worldIn, BlockPos pos) {
+		IBlockState iblockstate = worldIn.getBlockState(pos);
+		TileEntity tileentity = worldIn.getTileEntity(pos);
+		boolean keepInventory = true;
+
+		if (active) {
+			worldIn.setBlockState(pos, Blocks.lit_furnace.getDefaultState()
+					.withProperty(FACING, iblockstate.getValue(FACING)), 3);
+			worldIn.setBlockState(pos, Blocks.lit_furnace.getDefaultState()
+					.withProperty(FACING, iblockstate.getValue(FACING)), 3);
+		} else {
+			worldIn.setBlockState(pos, Blocks.furnace.getDefaultState()
+					.withProperty(FACING, iblockstate.getValue(FACING)), 3);
+			worldIn.setBlockState(pos, Blocks.furnace.getDefaultState()
+					.withProperty(FACING, iblockstate.getValue(FACING)), 3);
+		}
+
+		keepInventory = false;
+
+		if (tileentity != null) {
+			tileentity.validate();
+			worldIn.setTileEntity(pos, tileentity);
+		}
+	}
+
+	public IBlockState onBlockPlaced(World worldIn, BlockPos pos,
+			EnumFacing facing, float hitX, float hitY, float hitZ, int meta,
+			EntityLivingBase placer) {
+		return this.getDefaultState().withProperty(FACING,
+				placer.getHorizontalFacing().getOpposite());
+	}
+
+	@SideOnly(Side.CLIENT)
+	public IBlockState getStateForEntityRender(IBlockState state) {
+		return this.getDefaultState().withProperty(FACING, EnumFacing.SOUTH);
+	}
+
+	/**
+	 * Convert the given metadata into a BlockState for this Block
+	 */
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState();
-		// return this.getDefaultState().withProperty(BURNING_SIDES_COUNT,
-		// Integer.valueOf(meta));
+		EnumFacing enumfacing = EnumFacing.getFront(meta);
+
+		if (enumfacing.getAxis() == EnumFacing.Axis.Y) {
+			enumfacing = EnumFacing.NORTH;
+		}
+
+		return this.getDefaultState().withProperty(FACING, enumfacing);
 	}
 
-	@Override
+	/**
+	 * Convert the BlockState into the correct metadata value
+	 */
 	public int getMetaFromState(IBlockState state) {
-		return 0;
-		// return ((Integer)state.getValue(BURNING_SIDES_COUNT)).intValue();
+		return ((EnumFacing) state.getValue(FACING)).getIndex();
 	}
 
-	// necessary to define which properties your blocks use
-	// will also affect the variants listed in the blockstates model file. See
-	// MBE03 for more info.
-	@Override
 	protected BlockState createBlockState() {
-		return new BlockState(this, new IProperty[] { BURNING_SIDES_COUNT });
+		return new BlockState(this, new IProperty[] { FACING });
 	}
 
+	@SideOnly(Side.CLIENT)
+	static final class SwitchEnumFacing {
+		static final int[] FACING_LOOKUP = new int[EnumFacing.values().length];
+		private static final String __OBFID = "CL_00002111";
 
-	public static final PropertyInteger BURNING_SIDES_COUNT = PropertyInteger
-			.create("burning_sides_count", 0, 4);
-	// change the furnace emitted light ("block light") depending on how many
-	// slots are burning
-	*/
-	
+		static {
+			try {
+				FACING_LOOKUP[EnumFacing.WEST.ordinal()] = 1;
+			} catch (NoSuchFieldError var4) {
+				;
+			}
+
+			try {
+				FACING_LOOKUP[EnumFacing.EAST.ordinal()] = 2;
+			} catch (NoSuchFieldError var3) {
+				;
+			}
+
+			try {
+				FACING_LOOKUP[EnumFacing.NORTH.ordinal()] = 3;
+			} catch (NoSuchFieldError var2) {
+				;
+			}
+
+			try {
+				FACING_LOOKUP[EnumFacing.SOUTH.ordinal()] = 4;
+			} catch (NoSuchFieldError var1) {
+				;
+			}
+		}
+	}
+
 	private static final int FOUR_SIDE_LIGHT_VALUE = 15; // light value for four
 															// sides burning
 	private static final int ONE_SIDE_LIGHT_VALUE = 8; // light value for a
