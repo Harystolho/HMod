@@ -7,5 +7,6 @@ item.hary_pick.name=Hary Pickaxe
 tile.hary_block.name=Hary Purple
 tile.hary_ore.name=Hary Ore
 tile.hary_barrel.name=Hary Barrel
+tile.hary_furnace.name=Hary Furnace
 
 itemGroup.HarysTab=Harystolho Tab
