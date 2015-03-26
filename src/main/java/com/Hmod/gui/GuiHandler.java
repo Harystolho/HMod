@@ -7,9 +7,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
 import com.Hmod.container.ContainerBarrel;
-import com.Hmod.container.ContainerFurnace;
+import com.Hmod.container.ContainerCustomFurnace;
 import com.Hmod.tile_entity.TileEntityBarrel;
-import com.Hmod.tile_entity.TileEntityFurnace;
+import com.Hmod.tile_entity.TileEntityFurnaceH;
 
 public class GuiHandler implements IGuiHandler {
 
@@ -21,10 +21,14 @@ public class GuiHandler implements IGuiHandler {
 			return new ContainerBarrel(player.inventory,
 					(TileEntityBarrel) world
 							.getTileEntity(new BlockPos(x, y, z)));
-		case ContainerFurnace.GUI_FURNACE:
-			return new ContainerFurnace(player.inventory,
-					(TileEntityFurnace) world.getTileEntity(new BlockPos(x, y,
-							z)));
+		case ContainerCustomFurnace.GUI_FURNACE:
+			BlockPos xyz = new BlockPos(x, y, z);
+			TileEntity tileEntity = world.getTileEntity(xyz);
+			if (tileEntity instanceof TileEntityFurnaceH) {
+				TileEntityFurnaceH tileInventoryFurnace = (TileEntityFurnaceH) tileEntity;
+			return new ContainerCustomFurnace(player.inventory, tileInventoryFurnace);
+			}
+			return null;
 		default:
 			return null;
 		}
@@ -38,13 +42,14 @@ public class GuiHandler implements IGuiHandler {
 			return new GuiBarrel(new ContainerBarrel(player.inventory,
 					(TileEntityBarrel) world
 							.getTileEntity(new BlockPos(x, y, z))));
-		case ContainerFurnace.GUI_FURNACE:
+		case ContainerCustomFurnace.GUI_FURNACE:
 			BlockPos xyz = new BlockPos(x, y, z);
 			TileEntity tileEntity = world.getTileEntity(xyz);
-			if (tileEntity instanceof TileEntityFurnace) {
-				TileEntityFurnace tileInventoryFurnace = (TileEntityFurnace) tileEntity;
-			return new GuiHFurnace(player.inventory, tileInventoryFurnace);
+			if (tileEntity instanceof TileEntityFurnaceH) {
+				TileEntityFurnaceH tileInventoryFurnace = (TileEntityFurnaceH) tileEntity;
+				return new GuiHFurnace(player.inventory, tileInventoryFurnace);
 			}
+			return null;
 		default:
 			return null;
 		}

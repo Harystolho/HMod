@@ -10,35 +10,35 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-import com.Hmod.container.ContainerFurnace;
+import com.Hmod.container.ContainerCustomFurnace;
 import com.Hmod.helper.Reference;
-import com.Hmod.tile_entity.TileEntityFurnace;
+import com.Hmod.tile_entity.TileEntityFurnaceH;
 
 public class GuiHFurnace extends GuiContainer {
 
 	public static final ResourceLocation BACKGROUND = new ResourceLocation(
 			Reference.MODID + ":textures/gui/furnace.png");
-	private TileEntityFurnace tileEntity;
+	private TileEntityFurnaceH tileEntity;
 
 	public GuiHFurnace(InventoryPlayer invPlayer,
-			TileEntityFurnace tileInventoryFurnace) {
-		super(new ContainerFurnace(invPlayer, tileInventoryFurnace));
+			TileEntityFurnaceH tileInventoryFurnace) {
+		super(new ContainerCustomFurnace(invPlayer, tileInventoryFurnace));
 		// Set the width and height of the gui
 		xSize = 176;
-		ySize = 166;
+		ySize = 209;
 		this.tileEntity = tileInventoryFurnace;
 	}
 
 
-	final int COOK_BAR_XPOS = 48;
-	final int COOK_BAR_YPOS = 17;
+	final int COOK_BAR_XPOS = 49;
+	final int COOK_BAR_YPOS = 75;
 	final int COOK_BAR_ICON_U = 0; // texture position of white arrow icon
-	final int COOK_BAR_ICON_V = 166;
+	final int COOK_BAR_ICON_V = 210;
 	final int COOK_BAR_WIDTH = 80;
 	final int COOK_BAR_HEIGHT = 17;
 
-	final int FLAME_XPOS = 80;
-	final int FLAME_YPOS = 37;
+	final int FLAME_XPOS = 81;
+	final int FLAME_YPOS = 96;
 	final int FLAME_ICON_U = 176; // texture position of flame icon
 	final int FLAME_ICON_V = 0;
 	final int FLAME_WIDTH = 14;
@@ -64,7 +64,7 @@ public class GuiHFurnace extends GuiContainer {
 		for (int i = 0; i < 1; ++i) {
 			double burnRemaining = tileEntity.fractionOfFuelRemaining(i);
 			int yOffset = (int) ((1.0 - burnRemaining) * FLAME_HEIGHT);
-			drawTexturedModalRect(guiLeft + FLAME_XPOS * i, guiTop + FLAME_YPOS
+			drawTexturedModalRect(guiLeft + FLAME_XPOS, guiTop + FLAME_YPOS
 					+ yOffset, FLAME_ICON_U, FLAME_ICON_V + yOffset,
 					FLAME_WIDTH, FLAME_HEIGHT - yOffset);
 		}
@@ -90,7 +90,7 @@ public class GuiHFurnace extends GuiContainer {
 		// If the mouse is over one of the burn time indicator add the burn time
 		// indicator hovering text
 		for (int i = 0; i < tileEntity.FUEL_SLOTS_COUNT; ++i) {
-			if (isInRect(guiLeft + FLAME_XPOS * i, guiTop
+			if (isInRect(guiLeft + FLAME_XPOS, guiTop
 					+ FLAME_YPOS, FLAME_WIDTH, FLAME_HEIGHT, mouseX, mouseY)) {
 				hoveringText.add("Fuel Time:");
 				hoveringText.add(tileEntity.secondsOfFuelRemaining(i) + "s");

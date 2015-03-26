@@ -6,7 +6,8 @@
         "north": "hm:blocks/hary_furnace_front",
         "south": "hm:blocks/hary_furnace_side",
         "east": "hm:blocks/hary_furnace_side",
-        "west": "hm:blocks/hary_furnace_side"
+        "west": "hm:blocks/hary_furnace_side",
+         "particle": "blocks/furnace_top"
 
     }
 }

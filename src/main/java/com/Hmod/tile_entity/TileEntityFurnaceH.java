@@ -14,13 +14,14 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumSkyBlock;
 
-public class TileEntityFurnace extends TileEntity implements IInventory,
+public class TileEntityFurnaceH extends TileEntity implements IInventory,
 		IUpdatePlayerListBox {
 
 	public static final int FUEL_SLOTS_COUNT = 1;
@@ -61,12 +62,12 @@ public class TileEntityFurnace extends TileEntity implements IInventory,
 		return MathHelper.clamp_double(fraction, 0.0, 1.0);
 	}
 
-	public int secondsOfFuelRemaining(int fuelSlot)
-	{
-	if (burnTimeRemaining[fuelSlot] <= 0 ) return 0;
-	return burnTimeRemaining[fuelSlot] / 20; // 20 ticks per second
+	public int secondsOfFuelRemaining(int fuelSlot) {
+		if (burnTimeRemaining[fuelSlot] <= 0)
+			return 0;
+		return burnTimeRemaining[fuelSlot] / 20; // 20 ticks per second
 	}
-	
+
 	public int numberOfBurningFuelSlots() {
 		int burningCount = 0;
 		for (int burnTime : burnTimeRemaining) {
@@ -422,7 +423,7 @@ public class TileEntityFurnace extends TileEntity implements IInventory,
 	// the GUI
 	@Override
 	public String getName() {
-		return "hm.hary_furnace.name";
+		return "Hary Furnace";
 	}
 
 	@Override

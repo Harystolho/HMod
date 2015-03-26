@@ -1,12 +1,13 @@
 package com.Hmod.proxy;
 
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+
 import com.Hmod.HaryBlocks.HarysBlocks;
 import com.Hmod.HaryItems.HarysItems;
+import com.Hmod.container.ContainerCustomFurnace;
 import com.Hmod.gui.GuiHandler;
+import com.Hmod.handler.GuiHandlerRegistry;
 import com.Hmod.main.MainHary;
-
-import net.minecraftforge.client.ClientCommandHandler;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 public class ClientProxy extends CommonProxy {
 
@@ -20,6 +21,9 @@ public class ClientProxy extends CommonProxy {
 	public void registerNetworkStaff(){
 		
 		NetworkRegistry.INSTANCE.registerGuiHandler(MainHary.instance, new GuiHandler());
+		
+		
+		GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandler(), ContainerCustomFurnace.GUI_FURNACE);
 		
 	}
 }

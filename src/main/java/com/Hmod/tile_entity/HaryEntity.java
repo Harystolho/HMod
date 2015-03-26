@@ -18,8 +18,8 @@ public class HaryEntity {
 		GameRegistry.registerTileEntity(TileEntityBarrel.class,
 				"TileEntityBarrel");
 		
-		GameRegistry.registerTileEntity(TileEntityFurnace.class,
-				"TileEntityFurnace");
+		GameRegistry.registerTileEntity(TileEntityFurnaceH.class,
+				"hary_furnace");
 
 	}
 

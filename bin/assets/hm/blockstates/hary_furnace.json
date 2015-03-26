@@ -1,5 +1,5 @@
-{
+    {
     "variants": {
-        "normal": {"model": "hm:hary_furnace"}
+         "normal": {"model": "hm:hary_furnace"}
         } 
  }          

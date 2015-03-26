@@ -38,22 +38,23 @@ public class MainHary {
 
 		HarysBlocks.init();
 		HarysBlocks.register();
-
+		
 		HarysItems.init();
 		HarysItems.register();
 
-		HarysRecipes.addRecipes();
-
 		HarysGen.MainRegistry();
+		
+		
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 
-		proxy.registerRenders();
 		HaryEntity.register();
 		
+		proxy.registerRenders();
 		proxy.registerNetworkStaff();
+		HarysRecipes.addRecipes();
 
 	}
 

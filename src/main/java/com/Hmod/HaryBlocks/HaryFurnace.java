@@ -6,9 +6,11 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
@@ -19,23 +21,23 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.Hmod.container.ContainerBarrel;
-import com.Hmod.container.ContainerFurnace;
+import com.Hmod.container.ContainerCustomFurnace;
 import com.Hmod.main.MainHary;
-import com.Hmod.tile_entity.TileEntityBarrel;
-import com.Hmod.tile_entity.TileEntityFurnace;
+import com.Hmod.nothing.HaryTileEntityChest;
+import com.Hmod.tile_entity.TileEntityFurnaceH;
 
 public class HaryFurnace extends BlockContainer {
 
-	public HaryFurnace() {
-		super(Material.wood);
+	private static final IProperty FACING = null;
 
+	public HaryFurnace() {
+		super(Material.rock);
 		this.setCreativeTab(MainHary.HaryT);
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityFurnace();
+		return new TileEntityFurnaceH();
 	}
 
 	// Called when the block is right clicked
@@ -45,11 +47,19 @@ public class HaryFurnace extends BlockContainer {
 	public boolean onBlockActivated(World worldIn, BlockPos pos,
 			IBlockState state, EntityPlayer playerIn, EnumFacing side,
 			float hitX, float hitY, float hitZ) {
-		if (worldIn.isRemote) return true;
-		playerIn.openGui(MainHary.instance, ContainerFurnace.GUI_FURNACE, worldIn, pos.getX(), pos.getY(), pos.getZ());
-		return true;	
+		// Uses the gui handler registered to your mod to open the gui for the
+		// given gui id
+		// open on the server side only (not sure why you shouldn't open client
+		// side too... vanilla doesn't, so we better not either)
+		if (worldIn.isRemote)
+			return true;
+		playerIn.openGui(MainHary.instance, ContainerCustomFurnace.GUI_FURNACE,
+				worldIn, pos.getX(), pos.getY(), pos.getZ());
+		return true;
 	}
 
+	
+	
 	// This is where you can do something when the block is broken. In this case
 	// drop the inventory's contents
 	@Override
@@ -92,7 +102,7 @@ public class HaryFurnace extends BlockContainer {
 		super.breakBlock(worldIn, pos, state);
 	}
 
-	// The code below isn't necessary for illustrating the Inventory Furnace
+/*	// The code below isn't necessary for illustrating the Inventory Furnace
 	// concepts, it's just used for rendering.
 	// For more background information see MBE03
 	// we will give our Block a property which tracks the number of burning
@@ -109,8 +119,8 @@ public class HaryFurnace extends BlockContainer {
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn,
 			BlockPos pos) {
 		TileEntity tileEntity = worldIn.getTileEntity(pos);
-		if (tileEntity instanceof TileEntityFurnace) {
-			TileEntityFurnace tileInventoryFurnace = (TileEntityFurnace) tileEntity;
+		if (tileEntity instanceof TileEntityFurnaceH) {
+			TileEntityFurnaceH tileInventoryFurnace = (TileEntityFurnaceH) tileEntity;
 			int burningSlots = tileInventoryFurnace.numberOfBurningFuelSlots();
 			burningSlots = MathHelper.clamp_int(burningSlots, 0, 4);
 			return getDefaultState().withProperty(BURNING_SIDES_COUNT,
@@ -140,10 +150,13 @@ public class HaryFurnace extends BlockContainer {
 		return new BlockState(this, new IProperty[] { BURNING_SIDES_COUNT });
 	}
 
+
 	public static final PropertyInteger BURNING_SIDES_COUNT = PropertyInteger
 			.create("burning_sides_count", 0, 4);
 	// change the furnace emitted light ("block light") depending on how many
 	// slots are burning
+	*/
+	
 	private static final int FOUR_SIDE_LIGHT_VALUE = 15; // light value for four
 															// sides burning
 	private static final int ONE_SIDE_LIGHT_VALUE = 8; // light value for a
@@ -152,7 +165,7 @@ public class HaryFurnace extends BlockContainer {
 	public int getLightValue(IBlockAccess world, BlockPos pos) {
 		int lightValue = 0;
 		IBlockState blockState = getActualState(getDefaultState(), world, pos);
-		int burningSides = (Integer) blockState.getValue(BURNING_SIDES_COUNT);
+		int burningSides = 4;
 		if (burningSides == 0) {
 			lightValue = 0;
 		} else {
