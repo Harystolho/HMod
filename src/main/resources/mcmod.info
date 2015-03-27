@@ -1,0 +1,16 @@
+[
+{
+  "modid": "hm",
+  "name": "Insta Furnace",
+  "description": "Insta Furnace and other things",
+  "version": "1.0",
+  "mcversion": "1.8.3",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Harystolho"],
+  "credits": "Thank for GreyGhost",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

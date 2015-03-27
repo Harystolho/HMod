@@ -24,7 +24,7 @@ public class HarysItems {
 	public static Item hary_replacer;
 	
 	public static ToolMaterial hary_material = EnumHelper.addToolMaterial(
-			"hary_material", 3, 1567, 20F, 5F, 25);
+			"hary_material", 3, 1567, 200F, 5F, 25);
 
 	public static void init() {
 

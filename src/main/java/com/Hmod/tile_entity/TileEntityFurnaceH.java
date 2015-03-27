@@ -54,7 +54,7 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 	/** The number of ticks the current item has been cooking */
 	private short cookTime;
 	/** The number of ticks required to cook an item */
-	private static short COOK_TIME_FOR_COMPLETION = 100; // vanilla value
+	private static short COOK_TIME_FOR_COMPLETION = 0; // vanilla value
 																// is 200 = 10
 																// seconds
 	private int cachedNumberOfBurningSlots = -1;

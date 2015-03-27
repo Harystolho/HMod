@@ -1,8 +1,10 @@
 item.wrench_hary.name=Block Placer
 item.remov_hary.name=Block Remover
 item.ingot_hary.name=Hary Ingot
+item.ingot_compress_hary.name=Compressed Ingot
 item.coord_hary.name=Coord Hary
 item.hary_pick.name=Hary Pickaxe
+item.hary_replacer.name=[WIP] Hary Replacer
 
 tile.hary_block.name=Hary Purple
 tile.hary_ore.name=Hary Ore
