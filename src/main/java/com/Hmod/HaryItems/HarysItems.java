@@ -22,6 +22,7 @@ public class HarysItems {
 	public static Item ingot_compress_hary;
 	public static Item hary_test;
 	public static Item hary_replacer;
+	public static Item hary_gear;
 	
 	public static ToolMaterial hary_material = EnumHelper.addToolMaterial(
 			"hary_material", 3, 1567, 200F, 5F, 25);
@@ -38,7 +39,7 @@ public class HarysItems {
 		coord_hary = new Coord_hary().setCreativeTab(MainHary.HaryT);
 		hary_test = new Hary_Test().setCreativeTab(MainHary.HaryT);
 		hary_replacer = new Hary_Replacer().setCreativeTab(MainHary.HaryT);
-		
+		hary_gear = new Item().setUnlocalizedName("hary_gear").setCreativeTab(MainHary.HaryT);
 	}
 
 	public static void register() {
@@ -55,6 +56,7 @@ public class HarysItems {
 		GameRegistry.registerItem(ingot_compress_hary, ingot_compress_hary.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(hary_test, hary_test.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(hary_replacer, hary_replacer.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(hary_gear, hary_gear.getUnlocalizedName().substring(5));
 	}
 
 	public static void registerRenders() {
@@ -67,6 +69,7 @@ public class HarysItems {
 		registerRender(ingot_compress_hary);
 		registerRender(hary_test);
 		registerRender(hary_replacer);
+		registerRender(hary_gear);
 
 	}
 

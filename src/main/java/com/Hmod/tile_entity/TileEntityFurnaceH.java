@@ -5,9 +5,18 @@ import java.util.Arrays;
 import com.Hmod.HaryItems.HarysItems;
 import com.Hmod.HaryRecipes.HaryFurnaceRecipes;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
+import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagIntArray;
@@ -39,7 +48,8 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 			+ FUEL_SLOTS_COUNT;
 	public static final int FIRST_OUTPUT_SLOT = FIRST_INPUT_SLOT
 			+ INPUT_SLOTS_COUNT;
-	public static final int FIRST_UPGRAE_SLOT = FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT;
+	public static final int FIRST_UPGRAE_SLOT = FIRST_OUTPUT_SLOT
+			+ OUTPUT_SLOTS_COUNT;
 
 	private ItemStack[] itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
 
@@ -54,9 +64,9 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 	/** The number of ticks the current item has been cooking */
 	private short cookTime;
 	/** The number of ticks required to cook an item */
-	private static short COOK_TIME_FOR_COMPLETION = 0; // vanilla value
-																// is 200 = 10
-																// seconds
+	private static short COOK_TIME_FOR_COMPLETION = 1; // vanilla value
+														// is 200 = 10
+														// seconds
 	private int cachedNumberOfBurningSlots = -1;
 
 	public double fractionOfFuelRemaining(int fuelSlot) {
@@ -248,22 +258,68 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 	// returns the number of ticks the given item will burn. Returns 0 if the
 	// given item is not a valid fuel
 	public static short getItemBurnTime(ItemStack stack) {
-		int burntime = TileEntityFurnace.getItemBurnTime(stack); // just use the
-																	// vanilla
-																	// values
+		int burntime = TileEntityFurnaceH.getItemBurnTimeHary(stack); // just
+																		// use
+																		// the
+																		// vanilla
 		return (short) MathHelper.clamp_int(burntime, 0, Short.MAX_VALUE);
 	}
 
-	public static int getUpgradeItems(ItemStack sourceStack) {
-		if(sourceStack.getItem() == HarysItems.ingot_hary){
-			COOK_TIME_FOR_COMPLETION = 50; return 1;
-		} else if(sourceStack.getItem() == HarysItems.ingot_compress_hary){
-			COOK_TIME_FOR_COMPLETION = 50; return 1;
-		}
+	private static int getItemBurnTimeHary(ItemStack p_145952_0_) {
+		{
+			if (p_145952_0_ == null) {
+				return 0;
+			} else {
+				Item item = p_145952_0_.getItem();
+
+				if (item instanceof ItemBlock
+						&& Block.getBlockFromItem(item) != Blocks.air) {
+					Block block = Block.getBlockFromItem(item);
+
+					return 0; 
+				}
+
+				/*if (item instanceof ItemTool
+						&& ((ItemTool) item).getToolMaterialName().equals(
+								"WOOD"))
+					return 200;
+				if (item instanceof ItemSword
+						&& ((ItemSword) item).getToolMaterialName().equals(
+								"WOOD"))
+					return 200;
+				if (item instanceof ItemHoe
+						&& ((ItemHoe) item).getMaterialName().equals("WOOD"))
+					return 200;
+				if (item == Items.stick)
+					return 100;*/
+				if (item == Items.coal)
+					return 2;
+				if (item == HarysItems.ingot_hary)
+					return 5;
+				if (item == HarysItems.ingot_compress_hary)
+					return 15;
 				
+				return net.minecraftforge.fml.common.registry.GameRegistry
+						.getFuelValue(p_145952_0_);
+			}
+		}
+
+	}
+
+	public static int getUpgradeItems(ItemStack sourceStack) {
+		Item item = sourceStack.getItem();
+		
+		if (item == HarysItems.ingot_hary) {
+			COOK_TIME_FOR_COMPLETION = 50;
+			return 1;
+		} else if (sourceStack.getItem() == HarysItems.ingot_compress_hary) {
+			COOK_TIME_FOR_COMPLETION = 50;
+			return 1;
+		}
+
 		return 0;
 	}
-	
+
 	// Gets the number of slots in the inventory
 	@Override
 	public int getSizeInventory() {
@@ -350,12 +406,14 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 	}
 
 	static public boolean isItemValidForUpgradeSlot(ItemStack itemStack) {
-		if(itemStack.getItem() == HarysItems.ingot_hary) return true;
-		if(itemStack.getItem() == HarysItems.ingot_compress_hary) return true;
-		
+		if (itemStack.getItem() == HarysItems.ingot_hary)
+			return true;
+		if (itemStack.getItem() == HarysItems.ingot_compress_hary)
+			return true;
+
 		return false;
 	}
-	
+
 	// This is where you save any data that you don't want to lose when the tile
 	// entity unloads
 	// In this case, it saves the state of the furnace (burn time etc) and the
@@ -545,7 +603,5 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 	@Override
 	public void closeInventory(EntityPlayer player) {
 	}
-
-
 
 }

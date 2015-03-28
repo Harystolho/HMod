@@ -25,7 +25,7 @@ public class Wrench_hary extends Item {
 			float hitY, float hitZ) {
 
 		int x = pos.getX();
-		int y = pos.getY();
+		int y = pos.getY() + 1;
 		int z = pos.getZ();
 
 		IBlockState state0 = HarysBlocks.hary_block.getDefaultState();

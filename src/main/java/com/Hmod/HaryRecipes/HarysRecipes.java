@@ -29,6 +29,12 @@ public class HarysRecipes {
 		GameRegistry.addRecipe(new ItemStack(HarysItems.ingot_compress_hary),
 				"AAA", "ADA", "AAA", 'A', HarysItems.ingot_hary, 'D', Items.diamond);
 		
+		GameRegistry.addRecipe(new ItemStack(HarysItems.hary_gear),
+				"A A", " X ", "A A", 'A', HarysItems.ingot_compress_hary, 'X', Items.diamond);
+		
+		GameRegistry.addRecipe(new ItemStack(HarysBlocks.hary_furnace),
+				"AAA", "ADA", "AAA", 'A', HarysItems.ingot_compress_hary, 'D', HarysItems.hary_gear);
+		
 	}
 
 }
