@@ -1,14 +1,26 @@
-item.wrench_hary.name=Block Placer
-item.remov_hary.name=Block Remover
-item.ingot_hary.name=Hary Ingot
-item.ingot_compress_hary.name=Compressed Ingot
-item.coord_hary.name=Coord Hary
-item.hary_pick.name=Hary Pickaxe
-item.hary_replacer.name=[WIP] Hary Replacer
+item.wrench_hary.name=Block Placer [CREATIVE ONLY]
+item.remov_hary.name=Block Remover [CREATIVE ONLY]
+item.ingot_hary.name=Purple Ingot
+item.ingot_compress_hary.name=Purple Compressed Ingot
+item.coord_hary.name=Coord Purple
+item.hary_pick.name=Purple Pickaxe
+item.hary_replacer.name=[WIP] Purple Replacer
+item.hary_food.name=Purple Healer
+item.hary_gear.name=Purple Gear
+item.hary_test.name=[TEST ITEM]
+item.hary_projectile.name= Purple Porjectile
 
-tile.hary_block.name=Hary Purple
-tile.hary_ore.name=Hary Ore
-tile.hary_barrel.name=Hary Barrel
-tile.hary_furnace.name=Hary Furnace
+tile.hary_block.name=Purple Block
+tile.hary_ore.name=Purple Ore
+tile.hary_barrel.name=Purple Barrel
+tile.hary_furnace.name=Purple Furnace
 
-itemGroup.HarysTab=Harystolho Tab
+
+itemGroup.HarysTab=InstaFurnace Tab
+
+achievement.orePicked= Purple Ore
+achievement.IngotCreated= Purple Compressed Ingot 
+achievement.itemSmelted= Purple Ingot [Put a diamond block in a vanilla furnace]
+achievement.orePicked.desc= Purple Ore
+achievement.IngotCreated.desc= Purple Ingot
+achievement.itemSmelted.desc= Purple Ingot

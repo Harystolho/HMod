@@ -35,6 +35,11 @@ public class HarysRecipes {
 		GameRegistry.addRecipe(new ItemStack(HarysBlocks.hary_furnace),
 				"AAA", "ADA", "AAA", 'A', HarysItems.ingot_compress_hary, 'D', HarysItems.hary_gear);
 		
+		GameRegistry.addRecipe(new ItemStack(HarysItems.hary_food),
+				" A ", "AXA", " A ", 'A', HarysItems.ingot_hary, 'X', HarysItems.hary_gear);
+		
+		GameRegistry.addSmelting(Blocks.diamond_block, new ItemStack(HarysItems.ingot_hary), 5F);
+		
 	}
 
 }

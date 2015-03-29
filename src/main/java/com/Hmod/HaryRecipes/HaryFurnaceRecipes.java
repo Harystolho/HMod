@@ -59,6 +59,7 @@ public class HaryFurnaceRecipes {
         // My recipes
         
         this.addSmeltingRecipeForBlock(HarysBlocks.hary_ore, new ItemStack(HarysItems.ingot_hary, 2), 10F);
+        this.addSmeltingRecipeForBlock(Blocks.diamond_block, new ItemStack(HarysItems.hary_gear, 4), 20F);
 	}
 
 	 public void addSmeltingRecipeForBlock(Block input, ItemStack stack, float experience)

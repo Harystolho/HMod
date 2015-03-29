@@ -14,6 +14,8 @@ import net.minecraft.world.World;
 
 public class Wrench_hary extends Item {
 
+	ItemStack[] item;
+	
 	public Wrench_hary() {
 
 		setUnlocalizedName("wrench_hary");
