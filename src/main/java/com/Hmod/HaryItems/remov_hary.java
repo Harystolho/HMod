@@ -55,4 +55,12 @@ public class Remov_hary extends Item {
 		return false;
 	}
 
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer playerIn,
+			List tooltip, boolean advanced) {
+		// TODO Auto-generated method stub
+		
+		stack.setStackDisplayName(EnumChatFormatting.YELLOW + "Block Remover");
+	}
+	
 }

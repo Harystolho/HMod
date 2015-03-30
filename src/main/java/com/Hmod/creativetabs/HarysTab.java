@@ -18,6 +18,6 @@ public class HarysTab extends CreativeTabs {
 	@Override
     public Item getTabIconItem()
     {
-        return HarysItems.wrench_hary;
+        return HarysItems.ingot_hary;
     }
 }

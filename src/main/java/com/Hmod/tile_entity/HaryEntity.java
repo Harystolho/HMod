@@ -7,9 +7,11 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import com.Hmod.HaryBlocks.HarysBlocks;
+import com.Hmod.main.MainHary;
 import com.Hmod.nothing.HaryChestRender;
 import com.Hmod.nothing.HaryItemRenderChest;
 import com.Hmod.nothing.hary_chest;

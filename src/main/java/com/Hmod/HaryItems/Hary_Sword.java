@@ -1,5 +1,7 @@
 package com.Hmod.HaryItems;
 
+import com.Hmod.main.MainHary;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -10,7 +12,9 @@ public class Hary_Sword extends ItemSword {
 
 	public Hary_Sword(ToolMaterial material) {
 		super(material);
-		// TODO Auto-generated constructor stub
+		
+		setUnlocalizedName("hary_sword");
+		setCreativeTab(MainHary.HaryT);
 	}
 
 	@Override

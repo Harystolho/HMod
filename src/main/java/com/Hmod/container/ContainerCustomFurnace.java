@@ -1,6 +1,5 @@
 package com.Hmod.container;
 
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -12,6 +11,8 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import com.Hmod.HaryItems.HarysItems;
+import com.Hmod.tile_entity.HaryEntity;
 import com.Hmod.tile_entity.TileEntityFurnaceH;
 
 public class ContainerCustomFurnace extends Container {
@@ -52,16 +53,19 @@ public class ContainerCustomFurnace extends Container {
 			+ FUEL_SLOTS_COUNT;
 	private final int FIRST_OUTPUT_SLOT_INDEX = FIRST_INPUT_SLOT_INDEX
 			+ INPUT_SLOTS_COUNT;
-	private final int FIRST_UPGRADE_SLOT_INDEX = FIRST_OUTPUT_SLOT_INDEX + OUTPUT_SLOTS_COUNT;
+	private final int FIRST_UPGRADE_SLOT_INDEX = FIRST_OUTPUT_SLOT_INDEX
+			+ OUTPUT_SLOTS_COUNT;
 
 	private final int FIRST_FUEL_SLOT_NUMBER = 0;
 	private final int FIRST_INPUT_SLOT_NUMBER = FIRST_FUEL_SLOT_NUMBER
 			+ FUEL_SLOTS_COUNT;
 	private final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER
 			+ INPUT_SLOTS_COUNT;
-	private final int FIRST_UPGRADE_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
+	private final int FIRST_UPGRADE_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER
+			+ OUTPUT_SLOTS_COUNT;
 
-	public ContainerCustomFurnace(IInventory playerInv, TileEntityFurnaceH furnace) {
+	public ContainerCustomFurnace(IInventory playerInv,
+			TileEntityFurnaceH furnace) {
 		this.tileFurnace = furnace;
 		int i = -18;
 		int j;
@@ -93,7 +97,6 @@ public class ContainerCustomFurnace extends Container {
 				FIRST_OUTPUT_SLOT_NUMBER, 137, 60));
 		this.addSlotToContainer(new SlotUpgrade(tileFurnace,
 				FIRST_UPGRADE_SLOT_NUMBER, 62, 26));
-
 
 	}
 
@@ -130,13 +133,11 @@ public class ContainerCustomFurnace extends Container {
 					// bottom slot first
 					return null;
 				}
-			} else if(TileEntityFurnaceH.getUpgradeItems(sourceStack) > 0){
-				if(!mergeItemStack(sourceStack, FIRST_UPGRADE_SLOT_INDEX, FIRST_UPGRADE_SLOT_INDEX + UPGRADE_SLOTS_COUNT, true)){
-					return null;
-				}
-			} else{
+
+			} else {
 				return null;
 			}
+
 		} else if (sourceSlotIndex >= FIRST_FUEL_SLOT_INDEX
 				&& sourceSlotIndex < FIRST_FUEL_SLOT_INDEX
 						+ FURNACE_SLOTS_COUNT) {
@@ -190,8 +191,10 @@ public class ContainerCustomFurnace extends Container {
 					icrafting.sendProgressBarUpdate(this, fieldID,
 							cachedFields[fieldID]);
 				}
+
 			}
 		}
+
 	}
 
 	// Called when a progress bar update is received from the server. The two
@@ -249,7 +252,7 @@ public class ContainerCustomFurnace extends Container {
 			return TileEntityFurnaceH.isItemValidForOutputSlot(stack);
 		}
 	}
-	
+
 	public class SlotUpgrade extends Slot {
 		public SlotUpgrade(IInventory inventoryIn, int index, int xPosition,
 				int yPosition) {

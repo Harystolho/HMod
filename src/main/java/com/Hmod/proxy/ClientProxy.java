@@ -1,5 +1,7 @@
 package com.Hmod.proxy;
 
+import net.minecraft.client.renderer.entity.RenderSnowball;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import com.Hmod.HaryBlocks.HarysBlocks;

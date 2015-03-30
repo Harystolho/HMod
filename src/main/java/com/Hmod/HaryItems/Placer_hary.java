@@ -1,5 +1,7 @@
 package com.Hmod.HaryItems;
 
+import java.util.List;
+
 import com.Hmod.HaryBlocks.HarysBlocks;
 
 import net.minecraft.block.Block;
@@ -9,14 +11,15 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
-public class Wrench_hary extends Item {
+public class Placer_hary extends Item {
 
 	ItemStack[] item;
 	
-	public Wrench_hary() {
+	public Placer_hary() {
 
 		setUnlocalizedName("wrench_hary");
 
@@ -63,4 +66,11 @@ public class Wrench_hary extends Item {
 	 * 
 	 * return false; }
 	 */
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer playerIn,
+			List tooltip, boolean advanced) {
+		// TODO Auto-generated method stub
+		stack.setStackDisplayName(EnumChatFormatting.YELLOW + "Block Placer");
+	}
+	
 }

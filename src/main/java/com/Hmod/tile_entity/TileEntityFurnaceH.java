@@ -65,8 +65,7 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 	private short cookTime;
 	/** The number of ticks required to cook an item */
 	private static short COOK_TIME_FOR_COMPLETION = 1; // vanilla value
-														// is 200 = 10
-														// seconds
+	// seconds
 	private int cachedNumberOfBurningSlots = -1;
 
 	public double fractionOfFuelRemaining(int fuelSlot) {
@@ -138,6 +137,23 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 			worldObj.checkLightFor(EnumSkyBlock.BLOCK, pos);
 		}
 	}
+
+	/*
+	 * private boolean hasUpgrade() { if (itemStacks[3] != null) { Item item =
+	 * itemStacks[3].getItem(); if (item == HarysItems.hary_upgrades1) {
+	 * getCookTime(item);
+	 * 
+	 * return true; } else if (item == HarysItems.hary_upgrades2) {
+	 * getCookTime(item); return true; } else if (item ==
+	 * HarysItems.hary_upgrades3) { getCookTime(item); return true; } } else {
+	 * COOK_TIME_FOR_COMPLETION = 200; return true; } return false; }
+	 * 
+	 * private static void getCookTime(Item item) { if (item ==
+	 * HarysItems.hary_upgrades1) { COOK_TIME_FOR_COMPLETION = 125; } else if
+	 * (item == HarysItems.hary_upgrades2) { COOK_TIME_FOR_COMPLETION = 75; }
+	 * else if (item == HarysItems.hary_upgrades3) { COOK_TIME_FOR_COMPLETION =
+	 * 1; } }
+	 */
 
 	private int burnFuel() {
 		int burningCount = 0;
@@ -276,48 +292,30 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 						&& Block.getBlockFromItem(item) != Blocks.air) {
 					Block block = Block.getBlockFromItem(item);
 
-					return 0; 
+					return 0;
 				}
 
-				/*if (item instanceof ItemTool
-						&& ((ItemTool) item).getToolMaterialName().equals(
-								"WOOD"))
-					return 200;
-				if (item instanceof ItemSword
-						&& ((ItemSword) item).getToolMaterialName().equals(
-								"WOOD"))
-					return 200;
-				if (item instanceof ItemHoe
-						&& ((ItemHoe) item).getMaterialName().equals("WOOD"))
-					return 200;
-				if (item == Items.stick)
-					return 100;*/
+				/*
+				 * if (item instanceof ItemTool && ((ItemTool)
+				 * item).getToolMaterialName().equals( "WOOD")) return 200; if
+				 * (item instanceof ItemSword && ((ItemSword)
+				 * item).getToolMaterialName().equals( "WOOD")) return 200; if
+				 * (item instanceof ItemHoe && ((ItemHoe)
+				 * item).getMaterialName().equals("WOOD")) return 200; if (item
+				 * == Items.stick) return 100;
+				 */
 				if (item == Items.coal)
 					return 2;
 				if (item == HarysItems.ingot_hary)
 					return 5;
 				if (item == HarysItems.ingot_compress_hary)
 					return 15;
-				
+
 				return net.minecraftforge.fml.common.registry.GameRegistry
 						.getFuelValue(p_145952_0_);
 			}
 		}
 
-	}
-
-	public static int getUpgradeItems(ItemStack sourceStack) {
-		Item item = sourceStack.getItem();
-		
-		if (item == HarysItems.ingot_hary) {
-			COOK_TIME_FOR_COMPLETION = 50;
-			return 1;
-		} else if (sourceStack.getItem() == HarysItems.ingot_compress_hary) {
-			COOK_TIME_FOR_COMPLETION = 50;
-			return 1;
-		}
-
-		return 0;
 	}
 
 	// Gets the number of slots in the inventory
@@ -406,11 +404,13 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 	}
 
 	static public boolean isItemValidForUpgradeSlot(ItemStack itemStack) {
-		if (itemStack.getItem() == HarysItems.ingot_hary)
+	/*	if (itemStack.getItem() == HarysItems.hary_upgrades1)
 			return true;
-		if (itemStack.getItem() == HarysItems.ingot_compress_hary)
+		if (itemStack.getItem() == HarysItems.hary_upgrades2)
 			return true;
-
+		if (itemStack.getItem() == HarysItems.hary_upgrades3)
+			return true;
+*/
 		return false;
 	}
 

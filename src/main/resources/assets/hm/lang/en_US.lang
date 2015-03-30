@@ -8,15 +8,17 @@ item.hary_replacer.name=[WIP] Purple Replacer
 item.hary_food.name=Purple Healer
 item.hary_gear.name=Purple Gear
 item.hary_test.name=[TEST ITEM]
-item.hary_projectile.name= Purple Porjectile
+item.hary_projectile.name= Purple Projectile
+item.hary_dust.name= Purple Dust
+item.hary_sword.name= Purple Sword
+item.hary_bag.name= Purple Bag
 
 tile.hary_block.name=Purple Block
 tile.hary_ore.name=Purple Ore
 tile.hary_barrel.name=Purple Barrel
 tile.hary_furnace.name=Purple Furnace
 
-
-itemGroup.HarysTab=InstaFurnace Tab
+itemGroup.HarysTab=InstaFurnace Mod
 
 achievement.orePicked= Purple Ore
 achievement.IngotCreated= Purple Compressed Ingot 

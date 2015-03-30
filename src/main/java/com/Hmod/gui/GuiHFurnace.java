@@ -95,7 +95,20 @@ public class GuiHFurnace extends GuiContainer {
 				hoveringText.add("Fuel Time:");
 				hoveringText.add(tileEntity.secondsOfFuelRemaining(i) + "s");
 			}
+		
 		}
+		
+		if (isInRect(guiLeft + 35, guiTop
+				+ 98, 10, 10, mouseX, mouseY)) {
+			hoveringText.add("Fuel: Purple Ingot, Purple Compressed Ingot");
+			hoveringText.add(" and Coal");
+		}
+		
+		if (isInRect(guiLeft + 47, guiTop
+				+ 26, 10, 10, mouseX, mouseY)) {
+			hoveringText.add("Soon Upgrades Slots");
+		}
+		
 		// If hoveringText is not empty draw the hovering text
 		if (!hoveringText.isEmpty()) {
 			drawHoveringText(hoveringText, mouseX - guiLeft, mouseY - guiTop,
