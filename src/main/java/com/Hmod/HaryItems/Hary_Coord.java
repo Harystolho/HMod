@@ -16,9 +16,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class Coord_hary extends Item {
+public class Hary_Coord extends Item {
 
-	public Coord_hary() {
+	public Hary_Coord() {
 		setUnlocalizedName("coord_hary");
 	}
 

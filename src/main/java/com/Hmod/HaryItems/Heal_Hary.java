@@ -55,7 +55,7 @@ public class Heal_Hary extends ItemFood {
 		//nbt.setString("info", "Restore full life");
 		//stack.getTagCompound().setTag("heal", nbt);
 */		tooltip.add("Restore full life");
-		stack.setStackDisplayName(EnumChatFormatting.BLUE + "Healer Fish");
+		stack.setStackDisplayName(EnumChatFormatting.BLUE + "Eletronic Healer");
 		
 	}
 }

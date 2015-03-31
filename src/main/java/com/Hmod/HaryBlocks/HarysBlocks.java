@@ -24,12 +24,12 @@ public class HarysBlocks {
 	
 	public static void init() {
 
-		hary_block = new BlocksHarys(Material.cloth).setUnlocalizedName(
+		hary_block = new BaseBlock(Material.cloth).setUnlocalizedName(
 				"hary_block").setCreativeTab(MainHary.HaryT);
-		hary_ore = new BlocksHarys(Material.iron)
+		hary_ore = new BaseBlock(Material.iron)
 				.setUnlocalizedName("hary_ore").setCreativeTab(MainHary.HaryT);
 
-		hary_barrel = new hary_barrel().setUnlocalizedName("hary_barrel");
+		hary_barrel = new HaryBarrel().setUnlocalizedName("hary_barrel");
 		hary_furnace = new HaryFurnace().setUnlocalizedName("hary_furnace");
 
 	}

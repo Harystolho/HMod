@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import com.Hmod.HaryBlocks.hary_barrel;
+import com.Hmod.HaryBlocks.HaryBarrel;
 import com.Hmod.helper.Reference;
 import com.Hmod.main.MainHary;
 
@@ -50,9 +50,9 @@ public class HarysItems {
 				"ingot_compress_hary").setCreativeTab(MainHary.HaryT);
 		placer_hary = new Placer_hary().setCreativeTab(MainHary.HaryT);
 		remov_hary = new Remov_hary().setCreativeTab(MainHary.HaryT);
-		ingot_hary = new Ingot_Hary().setUnlocalizedName("ingot_hary")
+		ingot_hary = new Hary_Ingot().setUnlocalizedName("ingot_hary")
 				.setCreativeTab(MainHary.HaryT);
-		coord_hary = new Coord_hary().setCreativeTab(MainHary.HaryT);
+		coord_hary = new Hary_Coord().setCreativeTab(MainHary.HaryT);
 		hary_replacer = new Hary_Replacer().setCreativeTab(MainHary.HaryT);
 		hary_gear = new Item().setUnlocalizedName("hary_gear").setCreativeTab(
 				MainHary.HaryT);

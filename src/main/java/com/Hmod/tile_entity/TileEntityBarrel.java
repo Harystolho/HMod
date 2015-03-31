@@ -11,7 +11,7 @@ public class TileEntityBarrel extends TileEntity {
 	public InventoryBasic inventory;
 	
 	public TileEntityBarrel() {
-		inventory = new InventoryBasic("BarrelInventory", false, 15);
+		inventory = new InventoryBasic("BarrelInventory", false, 63);
 	}
 
 	@Override

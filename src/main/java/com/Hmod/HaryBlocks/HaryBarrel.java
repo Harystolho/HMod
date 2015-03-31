@@ -11,9 +11,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityBanner;
 import net.minecraft.world.World;
 
-public class hary_barrel extends BlockContainer {
+public class HaryBarrel extends BlockContainer {
 
-	public hary_barrel() {
+	public HaryBarrel() {
 		super(Material.wood);
 
 		this.setCreativeTab(MainHary.HaryT);

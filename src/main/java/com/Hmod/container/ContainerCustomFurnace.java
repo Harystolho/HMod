@@ -1,5 +1,7 @@
 package com.Hmod.container;
 
+import java.util.Set;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -14,9 +16,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.Hmod.HaryItems.HarysItems;
 import com.Hmod.tile_entity.HaryEntity;
 import com.Hmod.tile_entity.TileEntityFurnaceH;
+import com.google.common.collect.Sets;
 
 public class ContainerCustomFurnace extends Container {
 
+	private Set playerList = Sets.newHashSet();
+	
 	private TileEntityFurnaceH tileFurnace;
 
 	public static final int GUI_FURNACE = 1;
@@ -266,5 +271,6 @@ public class ContainerCustomFurnace extends Container {
 			return TileEntityFurnaceH.isItemValidForUpgradeSlot(stack);
 		}
 	}
+	
 
 }

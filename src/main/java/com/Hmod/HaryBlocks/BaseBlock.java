@@ -3,9 +3,9 @@ package com.Hmod.HaryBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
-public class BlocksHarys extends Block{
+public class BaseBlock extends Block{
 
-	public BlocksHarys(Material materialIn) {
+	public BaseBlock(Material materialIn) {
 		super(materialIn);
 		
 	}

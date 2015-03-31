@@ -29,8 +29,8 @@ public class Hary_Pickaxe extends ItemPickaxe {
 		int y = pos.getY();
 		int z = pos.getZ();
 
-		if (playerIn.getHorizontalFacing() == EnumFacing.NORTH
-				|| playerIn.getHorizontalFacing() == EnumFacing.SOUTH) {
+		if (playerIn.getHorizontalFacing() == EnumFacing.NORTH && playerIn.rotationPitch < 30 && playerIn.rotationPitch > -29
+				|| playerIn.getHorizontalFacing() == EnumFacing.SOUTH && playerIn.rotationPitch < 30 && playerIn.rotationPitch > -29) {
 			worldIn.destroyBlock(new BlockPos(x, y, z), true);
 			worldIn.destroyBlock(new BlockPos(x, y + 1, z), true);
 			worldIn.destroyBlock(new BlockPos(x - 1, y + 1, z), true);
@@ -40,11 +40,11 @@ public class Hary_Pickaxe extends ItemPickaxe {
 			worldIn.destroyBlock(new BlockPos(x, y - 1, z), true);
 			worldIn.destroyBlock(new BlockPos(x + 1, y, z), true);
 			worldIn.destroyBlock(new BlockPos(x - 1, y, z), true);
-			playerIn.setHealth(playerIn.getHealth() -1);
+			playerIn.setHealth(playerIn.getHealth() - 1);
 		}
 
-		if (playerIn.getHorizontalFacing() == EnumFacing.WEST
-				|| playerIn.getHorizontalFacing() == EnumFacing.EAST) {
+		if (playerIn.getHorizontalFacing() == EnumFacing.WEST && playerIn.rotationPitch < 30 && playerIn.rotationPitch > -29
+				|| playerIn.getHorizontalFacing() == EnumFacing.EAST && playerIn.rotationPitch < 30 && playerIn.rotationPitch > -29) {
 			worldIn.destroyBlock(new BlockPos(x, y, z), true);
 			worldIn.destroyBlock(new BlockPos(x, y + 1, z), true);
 			worldIn.destroyBlock(new BlockPos(x, y + 1, z + 1), true);
@@ -54,10 +54,35 @@ public class Hary_Pickaxe extends ItemPickaxe {
 			worldIn.destroyBlock(new BlockPos(x, y - 1, z), true);
 			worldIn.destroyBlock(new BlockPos(x, y, z + 1), true);
 			worldIn.destroyBlock(new BlockPos(x, y, z - 1), true);
-			playerIn.setHealth(playerIn.getHealth() -1);
+			playerIn.setHealth(playerIn.getHealth() - 1);
 		}
 
+		if (playerIn.rotationPitch > 30) {
+			worldIn.destroyBlock(new BlockPos(x, y, z), true);
+			worldIn.destroyBlock(new BlockPos(x, y, z + 1), true);
+			worldIn.destroyBlock(new BlockPos(x, y, z - 1), true);
+			worldIn.destroyBlock(new BlockPos(x + 1, y, z - 1), true);
+			worldIn.destroyBlock(new BlockPos(x - 1, y, z - 1), true);
+			worldIn.destroyBlock(new BlockPos(x + 1, y, z + 1), true);
+			worldIn.destroyBlock(new BlockPos(x - 1, y, z + 1), true);
+			worldIn.destroyBlock(new BlockPos(x+1, y, z), true);
+			worldIn.destroyBlock(new BlockPos(x-1, y, z), true);
+			playerIn.setHealth(playerIn.getHealth() - 1);
+		}
 
+		if (playerIn.rotationPitch < -29) {
+			worldIn.destroyBlock(new BlockPos(x, y, z), true);
+			worldIn.destroyBlock(new BlockPos(x, y, z + 1), true);
+			worldIn.destroyBlock(new BlockPos(x, y, z - 1), true);
+			worldIn.destroyBlock(new BlockPos(x + 1, y, z - 1), true);
+			worldIn.destroyBlock(new BlockPos(x - 1, y, z - 1), true);
+			worldIn.destroyBlock(new BlockPos(x + 1, y, z + 1), true);
+			worldIn.destroyBlock(new BlockPos(x - 1, y, z + 1), true);
+			worldIn.destroyBlock(new BlockPos(x+1, y, z), true);
+			worldIn.destroyBlock(new BlockPos(x-1, y, z), true);
+			playerIn.setHealth(playerIn.getHealth() - 1);
+		}
+		
 		return false;
 	}
 

@@ -374,9 +374,9 @@ public class TileEntityFurnaceH extends TileEntity implements IInventory,
 		final double X_CENTRE_OFFSET = 0.5;
 		final double Y_CENTRE_OFFSET = 0.5;
 		final double Z_CENTRE_OFFSET = 0.5;
-		final double MAXIMUM_DISTANCE_SQ = 8.0 * 8.0;
+		final double MAXIMUM_DISTANCE_SQ = 0 * 0;
 		return player.getDistanceSq(pos.getX() + X_CENTRE_OFFSET, pos.getY()
-				+ Y_CENTRE_OFFSET, pos.getZ() + Z_CENTRE_OFFSET) < MAXIMUM_DISTANCE_SQ;
+				+ Y_CENTRE_OFFSET, pos.getZ() + Z_CENTRE_OFFSET) > MAXIMUM_DISTANCE_SQ;
 	}
 
 	// Return true if the given stack is allowed to be inserted in the given

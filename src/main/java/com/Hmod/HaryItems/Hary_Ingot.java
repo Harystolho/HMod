@@ -7,9 +7,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
-public class Ingot_Hary extends Item {
+public class Hary_Ingot extends Item {
 
-	public Ingot_Hary() {
+	public Hary_Ingot() {
 	}
 
 	@Override

@@ -20,22 +20,22 @@ public class ContainerBarrel extends Container {
 		int index = 0;
 		
 		//TileEntiry inventorySlots
-		for (j = 0; j < 3; ++j) {
-			for (k = 0; k < 5; ++k) {
+		for (j = 0; j < 7; ++j) {
+			for (k = 0; k < 9; ++k) {
 				addSlotToContainer(new Slot(barrel.inventory, index++,
-						44 + k * 18, 17 + j * 18));
+						8+ k * 18, 8 + j * 18));
 			}	
 		}
 
 		for (j = 0; j < 3; ++j) {
 			for (k = 0; k < 9; ++k) {
 				this.addSlotToContainer(new Slot(playerInv, k + j * 9 + 9,
-						8 + k * 18, 102 + j * 18 + i));
+						8 + k * 18, 165 + j * 18 + i));
 			}
 		}
 
 		for (j = 0; j < 9; ++j) {
-			this.addSlotToContainer(new Slot(playerInv, j, 8 + j * 18, 160 + i));
+			this.addSlotToContainer(new Slot(playerInv, j, 8 + j * 18, 223 + i));
 		}
 	}
 

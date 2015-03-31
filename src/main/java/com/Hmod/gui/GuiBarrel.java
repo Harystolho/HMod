@@ -18,7 +18,8 @@ public class GuiBarrel extends GuiContainer {
 
 	public GuiBarrel(Container container) {
 		super(container);
-
+		xSize = 176;
+		ySize = 229;
 	}
 
 	@Override
@@ -38,8 +39,11 @@ public class GuiBarrel extends GuiContainer {
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		final int LABEL_XPOS = 5;
 		final int LABEL_YPOS = 5;
-		fontRendererObj.drawString("Hary's Barrel", LABEL_XPOS, LABEL_YPOS, Color.darkGray
-				.getRGB());
+		/*
+		 * //fontRendererObj.drawString("Hary's Barrel", LABEL_XPOS, LABEL_YPOS,
+		 * Color.darkGray .getRGB());
+		 */
+
 	}
-	
+
 }
