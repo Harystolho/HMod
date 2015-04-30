@@ -55,7 +55,6 @@ public class HaryFurnaceRecipes {
         this.addSmeltingRecipeForBlock(Blocks.lapis_ore, new ItemStack(Items.dye, 1, EnumDyeColor.BLUE.getDyeDamage()), 0.2F);
         this.addSmeltingRecipeForBlock(Blocks.quartz_ore, new ItemStack(Items.quartz), 0.2F);
         
-        
         // My recipes
         
         this.addSmeltingRecipeForBlock(HarysBlocks.hary_ore, new ItemStack(HarysItems.ingot_hary, 2), 10F);
