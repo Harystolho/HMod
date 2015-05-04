@@ -10,6 +10,7 @@ public class ConfigHandler {
 
 	public static boolean PurpleOreSpawn;
 	public static int PurpleOreSpawnRate;
+	public static boolean HardMode;
 	
 	public static void init(File conf) {
 
@@ -18,13 +19,14 @@ public class ConfigHandler {
 		try {
 			config.load();
 			
-			String SpawnOre = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "OreSpawn Config";
-			String SpawnOreRate = config.CATEGORY_GENERAL + config.CATEGORY_GENERAL + "";
+			String SpawnOre = config.CATEGORY_SPLITTER + "OreSpawn Config";
 			
-			config.addCustomCategoryComment(SpawnOre, "Spawn Ore");
-			config.addCustomCategoryComment(SpawnOre, "Spawn Ore Rate");
 			PurpleOreSpawn = config.getBoolean("Purple Ore Spawn", SpawnOre, true, "Can PurpleOre Spawn:");
 			PurpleOreSpawnRate = config.getInt("Purple Ore Spawn Rate", SpawnOre, 10, 0, 50, "PurpleOre Spawn Rate:");
+			
+			String HardCraftMod = config.CATEGORY_GENERAL + config.CATEGORY_SPLITTER + "Misc";
+			
+			HardMode = config.getBoolean("Hard Mode?", HardCraftMod, false, "false = Diamond // true = Diamond Block");
 			
 		} catch (Exception e) {
 			

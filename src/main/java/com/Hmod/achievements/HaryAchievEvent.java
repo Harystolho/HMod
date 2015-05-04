@@ -12,7 +12,7 @@ public class HaryAchievEvent {
 
 	@SubscribeEvent
 	public void onOrePicked(PlayerEvent.ItemPickupEvent e){
-		if(e.pickedUp.getEntityItem().isItemEqual(new ItemStack(HarysBlocks.hary_block))){
+		if(e.pickedUp.getEntityItem().isItemEqual(new ItemStack(HarysBlocks.hary_ore))){
 			e.player.addStat(HaryAchiev.AchievMining, 1);
 		}
 	}

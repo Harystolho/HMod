@@ -16,9 +16,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class Hary_Coord extends Item {
+public class ItemHaryteTeleporter extends Item {
 
-	public Hary_Coord() {
+	public ItemHaryteTeleporter() {
 		setUnlocalizedName("coord_hary");
 	}
 
@@ -36,9 +36,9 @@ public class Hary_Coord extends Item {
 			nbt.setInteger("posX", pos.getX());
 			nbt.setInteger("posY", pos.getY());
 			nbt.setInteger("posZ", pos.getZ());
+			nbt.setBoolean("register", true);
 			stack.getTagCompound().setTag("coords", nbt);
 			stack.setStackDisplayName(EnumChatFormatting.BLUE + "Hary Coord");
-
 		}
 
 		return false;
@@ -55,6 +55,19 @@ public class Hary_Coord extends Item {
 				stack.clearCustomName();
 			}
 		}
+		if (stack.getTagCompound() != null) {
+			if (stack.getTagCompound().hasKey("coords")) {
+				NBTTagCompound nbt = (NBTTagCompound) stack.getTagCompound()
+						.getTag("coords");
+				if (nbt.getBoolean("register")) {
+					int posX = nbt.getInteger("posX");
+					int posY = nbt.getInteger("posY");
+					int posZ = nbt.getInteger("posZ");
+					playerIn.setPosition(posX, posY + 1, posZ);
+				}
+			}
+		}
+
 		return stack;
 	}
 

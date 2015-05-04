@@ -19,12 +19,6 @@ import com.google.common.collect.Maps;
 
 public class HaryEntity {
 
-	public static final Map stringToClassMapping = Maps.newHashMap();
-	public static final Map idToClassMapping = Maps.newHashMap();
-	public static final Map classToStringMapping = Maps.newHashMap();
-	private static final Map classToIDMapping = Maps.newHashMap();
-	private static final Map stringToIDMapping = Maps.newHashMap();
-
 	public static void register() {
 
 		GameRegistry.registerTileEntity(TileEntityBarrel.class,

@@ -20,7 +20,6 @@ import com.google.common.collect.Sets;
 
 public class ContainerCustomFurnace extends Container {
 
-	private Set playerList = Sets.newHashSet();
 	
 	private TileEntityFurnaceH tileFurnace;
 

@@ -28,10 +28,12 @@ public class HarysItems {
 	public static Item hary_food;
 	public static Item hary_throw;
 	public static Item hary_dust;
-/*	public static Item hary_upgrades1;
-	public static Item hary_upgrades2;
-	public static Item hary_upgrades3;*/
+	/*
+	 * public static Item hary_upgrades1; public static Item hary_upgrades2;
+	 * public static Item hary_upgrades3;
+	 */
 	public static Item hary_bag;
+	public static Item hary_sword_maker;
 
 	// Tools
 	public static ItemSword hary_sword;
@@ -48,11 +50,11 @@ public class HarysItems {
 		// Items
 		ingot_compress_hary = new Item().setUnlocalizedName(
 				"ingot_compress_hary").setCreativeTab(MainHary.HaryT);
-		placer_hary = new Placer_hary().setCreativeTab(MainHary.HaryT);
-		remov_hary = new Remov_hary().setCreativeTab(MainHary.HaryT);
-		ingot_hary = new Hary_Ingot().setUnlocalizedName("ingot_hary")
+		placer_hary = new HaryBlockPlacer().setCreativeTab(MainHary.HaryT);
+		remov_hary = new ItemBlockRemover().setCreativeTab(MainHary.HaryT);
+		ingot_hary = new ItemHaryteIngot().setUnlocalizedName("ingot_hary")
 				.setCreativeTab(MainHary.HaryT);
-		coord_hary = new Hary_Coord().setCreativeTab(MainHary.HaryT);
+		coord_hary = new ItemHaryteTeleporter().setCreativeTab(MainHary.HaryT);
 		hary_replacer = new Hary_Replacer().setCreativeTab(MainHary.HaryT);
 		hary_gear = new Item().setUnlocalizedName("hary_gear").setCreativeTab(
 				MainHary.HaryT);
@@ -61,13 +63,16 @@ public class HarysItems {
 		hary_throw = new Hary_Projectile();
 		hary_dust = new Item().setUnlocalizedName("hary_dust").setCreativeTab(
 				MainHary.HaryT);
-		/*hary_upgrades1 = new Item().setUnlocalizedName("hary_upgrades1")
-				.setCreativeTab(MainHary.HaryT);
-		hary_upgrades2 = new Item().setUnlocalizedName("hary_upgrades2")
-				.setCreativeTab(MainHary.HaryT);
-		hary_upgrades3 = new Item().setUnlocalizedName("hary_upgrades3")
-				.setCreativeTab(MainHary.HaryT);*/
-		hary_bag = new Hary_Bag();
+		/*
+		 * hary_upgrades1 = new Item().setUnlocalizedName("hary_upgrades1")
+		 * .setCreativeTab(MainHary.HaryT); hary_upgrades2 = new
+		 * Item().setUnlocalizedName("hary_upgrades2")
+		 * .setCreativeTab(MainHary.HaryT); hary_upgrades3 = new
+		 * Item().setUnlocalizedName("hary_upgrades3")
+		 * .setCreativeTab(MainHary.HaryT);
+		 */
+		hary_bag = new ItemWirelessContainer();
+		hary_sword_maker = new Hary_Sword_Maker().setUnlocalizedName("hary_maker").setCreativeTab(MainHary.HaryT);
 
 		// Tools
 		hary_pick = new Hary_Pickaxe(hary_material);
@@ -102,15 +107,19 @@ public class HarysItems {
 				.substring(5));
 		GameRegistry.registerItem(hary_dust, hary_dust.getUnlocalizedName()
 				.substring(5));
-		/*GameRegistry.registerItem(hary_upgrades1, hary_upgrades1
-				.getUnlocalizedName().substring(5));
-		GameRegistry.registerItem(hary_upgrades2, hary_upgrades2
-				.getUnlocalizedName().substring(5));
-		GameRegistry.registerItem(hary_upgrades3, hary_upgrades3
-				.getUnlocalizedName().substring(5));*/
+		/*
+		 * GameRegistry.registerItem(hary_upgrades1, hary_upgrades1
+		 * .getUnlocalizedName().substring(5));
+		 * GameRegistry.registerItem(hary_upgrades2, hary_upgrades2
+		 * .getUnlocalizedName().substring(5));
+		 * GameRegistry.registerItem(hary_upgrades3, hary_upgrades3
+		 * .getUnlocalizedName().substring(5));
+		 */
 		GameRegistry.registerItem(hary_bag, hary_bag.getUnlocalizedName()
 				.substring(5));
-		
+		GameRegistry.registerItem(hary_sword_maker, hary_sword_maker
+				.getUnlocalizedName().substring(5));
+
 		GameRegistry.registerItem(hary_test, hary_test.getUnlocalizedName()
 				.substring(5));
 	}
@@ -129,10 +138,12 @@ public class HarysItems {
 		registerRender(hary_throw);
 		registerRender(hary_sword);
 		registerRender(hary_dust);
-	/*	registerRender(hary_upgrades1);
-		registerRender(hary_upgrades2);
-		registerRender(hary_upgrades3);*/
+		/*
+		 * registerRender(hary_upgrades1); registerRender(hary_upgrades2);
+		 * registerRender(hary_upgrades3);
+		 */
 		registerRender(hary_bag);
+		registerRender(hary_sword_maker);
 
 		registerRender(hary_test);
 

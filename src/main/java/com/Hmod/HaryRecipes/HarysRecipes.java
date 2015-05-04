@@ -50,9 +50,9 @@ public class HarysRecipes {
 				"AXA", " A ", 'A', HarysItems.ingot_compress_hary, 'X',
 				Blocks.chest);
 
-		GameRegistry.addRecipe(new ItemStack(HarysItems.hary_sword), " A ",
+		/*GameRegistry.addRecipe(new ItemStack(HarysItems.hary_sword), " A ",
 				" A ", " X ", 'A', HarysItems.ingot_compress_hary, 'X',
-				HarysItems.hary_gear);
+				HarysItems.hary_gear);*/
 
 		GameRegistry.addRecipe(new ItemStack(HarysItems.hary_bag), "AYA",
 				"AXA", "AAA", 'A', Items.leather, 'X',
@@ -67,6 +67,9 @@ public class HarysRecipes {
 
 		GameRegistry.addSmelting(HarysItems.hary_dust, new ItemStack(
 				HarysItems.ingot_hary, 2), 5F);
+		
+		GameRegistry.addSmelting(Items.diamond, new ItemStack(
+				HarysItems.ingot_hary, 1), 5F);
 
 	}
 

@@ -1,5 +1,9 @@
 package com.Hmod.HaryItems;
 
+import java.util.List;
+
+import com.Hmod.HaryBlocks.HarysBlocks;
+import com.Hmod.container.ContainerBarrel;
 import com.Hmod.container.ContainerCustomFurnace;
 import com.Hmod.main.MainHary;
 import com.jcraft.jorbis.Block;
@@ -14,18 +18,27 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
-public class Hary_Bag extends Item {
+public class ItemWirelessContainer extends Item {
 
-	public Hary_Bag() {
+	public ItemWirelessContainer() {
 		setUnlocalizedName("hary_bag");
 		setCreativeTab(MainHary.HaryT);
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer playerIn,
+			List tooltip, boolean advanced) {
+
+		tooltip.add("Furnace/Barrel chunk must be loaded");
+
+		super.addInformation(stack, playerIn, tooltip, advanced);
 	}
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World worldIn,
 			EntityPlayer playerIn) {
 		int BposX = 0, BposY = 0, BposZ = 0;
-		
+
 		if (stack.getTagCompound() != null) {
 			if (stack.getTagCompound().hasKey("bag")) {
 				NBTTagCompound nbt = (NBTTagCompound) stack.getTagCompound()
@@ -37,12 +50,20 @@ public class Hary_Bag extends Item {
 		}
 
 		BlockPos pos0 = new BlockPos(BposX, BposY, BposZ);
-		
+		IBlockState pos1 = worldIn.getBlockState(pos0);
+		IBlockState posB = HarysBlocks.hary_barrel.getDefaultState();
+
 		if (BposX != 0 && BposY != 0 && BposZ != 0) {
 			if (!worldIn.isRemote) {
-				playerIn.openGui(MainHary.instance,
-						ContainerCustomFurnace.GUI_FURNACE, worldIn, pos0.getX(),
-						pos0.getY(), pos0.getZ());
+				if (pos1 == posB) {
+					playerIn.openGui(MainHary.instance,
+							ContainerBarrel.GUI_BARREL, worldIn, pos0.getX(),
+							pos0.getY(), pos0.getZ());
+				} else {
+					playerIn.openGui(MainHary.instance,
+							ContainerCustomFurnace.GUI_FURNACE, worldIn,
+							pos0.getX(), pos0.getY(), pos0.getZ());
+				}
 			}
 		}
 		return stack;
@@ -64,7 +85,7 @@ public class Hary_Bag extends Item {
 			nbt.setInteger("posZ", pos.getZ());
 			stack.getTagCompound().setTag("bag", nbt);
 			stack.setStackDisplayName(EnumChatFormatting.BLUE
-					+ "Purple Bag [LINKED]");
+					+ "Haryte Wireless Bag [LINKED]");
 
 		}
 
